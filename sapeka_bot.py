@@ -28,7 +28,7 @@ def repeat_viado_daily(update: Update, context: CallbackContext):
         context.job_queue.run_repeating(viado_daily, timedelta(days=1), 0, context=update.message.chat_id)
 
 def xingar(context: CallbackContext):
-        context.bot.sent_message(chat_id=context.job.context, text=xingamentos.xingar())
+        context.bot.send_message(chat_id=context.job.context, text=xingamentos.xingar())
 
 def repeat_xingar(update: Update, context: CallbackContext):
         context.job_queue.run_repeating(xingar, timedelta(minutes=30), 0, context=update.message.chat_id)
