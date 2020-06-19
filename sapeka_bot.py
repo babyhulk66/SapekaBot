@@ -1,14 +1,17 @@
 from random import choice, randint
 from datetime import timedelta
 import logging
+
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+
+import xingamentos
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-viados = ['Anderson', 'Wesley', 'Fernanda', 'Lucimara', 'Pablo']
+viados = xingamentos.names_m + xingamentos.names_f
 viado_do_dia = choice(viados)
 
 def help(update, context):
@@ -23,6 +26,12 @@ def viado_daily(context: CallbackContext):
 def repeat_viado_daily(update: Update, context: CallbackContext):
         """faz o viado ser escolhido todos os dias na hora que foi dado /start"""
         context.job_queue.run_repeating(viado_daily, timedelta(days=1), 0, context=update.message.chat_id)
+
+def xingar(context: CallbackContext):
+        context.bot.sent_message(chat_id=context.job.context, text=xingamentos.xingar())
+
+def repeat_xingar(update: Update, context: CallbackContext):
+        context.job_queue.run_repeating(viado_daily, timedelta(minutes=30), 0, context=update.message.chat_id)
 
 def viado(update, context):
         """mostra o viado do dia"""
@@ -48,11 +57,12 @@ def sapatometro(update, context):
         update.message.reply_text("{} é {}% sapatão 🌈🍑".format(" ".join(context.args), randint(0, 100)))
 
 def main():
-        updater = Updater("token é segredo meia noite eu conto", use_context=True)
+        updater = Updater("1216615734:AAFKqV5ysCg8iaYMyN2n9mjRrBBzRNpD0Bs", use_context=True)
 
         dp = updater.dispatcher
 
         dp.add_handler(CommandHandler("start", repeat_viado_daily))
+        dp.add_handler(CommandHandler("xingafdp", repeat_xingar))
         dp.add_handler(CommandHandler("help", help))
         dp.add_handler(CommandHandler("viado", viado))
         dp.add_handler(CommandHandler("queima", queimadoido))
