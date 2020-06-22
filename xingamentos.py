@@ -23,7 +23,7 @@ def create_xing(xing_list):
 def xingar(name):
     conjucao = random.choice(conjucoes)
     if name[-1].lower() == 'a':
-        xingamento = create_xing(xingamentos_f)
+        xingamentos = create_xing(xingamentos_f)
 
     else:
         xingamentos = create_xing(xingamentos_m)

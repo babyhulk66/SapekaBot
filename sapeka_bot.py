@@ -33,7 +33,7 @@ def xinga(update, context):
 
 def viado(update, context):
         """mostra o viado do dia"""
-        update.message.reply_text("viado do dia é {}!!!"format(viado_do_dia))
+        update.message.reply_text("viado do dia é {}!!!".format(viado_do_dia))
 
 def queimadoido(update, context):
         """POW"""
@@ -60,7 +60,7 @@ def main():
         dp = updater.dispatcher
 
         dp.add_handler(CommandHandler("start", repeat_viado_daily))
-        dp.add_handler(CommandHandler("xingafdp", xingar))
+        dp.add_handler(CommandHandler("xingafdp", xinga))
         dp.add_handler(CommandHandler("help", help))
         dp.add_handler(CommandHandler("viado", viado))
         dp.add_handler(CommandHandler("queima", queimadoido))
