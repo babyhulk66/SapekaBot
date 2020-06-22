@@ -29,11 +29,11 @@ def repeat_viado_daily(update: Update, context: CallbackContext):
 
 def xingar(update, context):
         name = " ".join(context.args)
-        context.bot.send_message(chat_id=update.message.chat_id, text=name + xingamentos.xingar(name))
+        update.message.reply_text(text=name + xingamentos.xingar(name))
 
 def viado(update, context):
         """mostra o viado do dia"""
-        update.message.reply_text("viado do dia é {}!!!".format(viado_do_dia))
+        update.message.reply_text("viado do dia é {}!!!"format(viado_do_dia))
 
 def queimadoido(update, context):
         """POW"""
