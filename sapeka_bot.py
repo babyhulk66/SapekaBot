@@ -27,11 +27,9 @@ def repeat_viado_daily(update: Update, context: CallbackContext):
         """faz o viado ser escolhido todos os dias na hora que foi dado /start"""
         context.job_queue.run_repeating(viado_daily, timedelta(days=1), 0, context=update.message.chat_id)
 
-def xingar(context: CallbackContext):
-        context.bot.send_message(chat_id=context.job.context, text=xingamentos.xingar())
-
-def repeat_xingar(update: Update, context: CallbackContext):
-        context.job_queue.run_repeating(xingar, timedelta(minutes=30), 0, context=update.message.chat_id)
+def xingar(update, context):
+        name = " ".join(context.args)
+        context.bot.send_message(chat_id=update.message.chat_id, text=name + xingamentos.xingar(name))
 
 def viado(update, context):
         """mostra o viado do dia"""
@@ -62,7 +60,7 @@ def main():
         dp = updater.dispatcher
 
         dp.add_handler(CommandHandler("start", repeat_viado_daily))
-        dp.add_handler(CommandHandler("xingafdp", repeat_xingar))
+        dp.add_handler(CommandHandler("xingafdp", xingar))
         dp.add_handler(CommandHandler("help", help))
         dp.add_handler(CommandHandler("viado", viado))
         dp.add_handler(CommandHandler("queima", queimadoido))
