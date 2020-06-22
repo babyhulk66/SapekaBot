@@ -27,7 +27,7 @@ def repeat_viado_daily(update: Update, context: CallbackContext):
         """faz o viado ser escolhido todos os dias na hora que foi dado /start"""
         context.job_queue.run_repeating(viado_daily, timedelta(days=1), 0, context=update.message.chat_id)
 
-def xingar(update, context):
+def xinga(update, context):
         name = " ".join(context.args)
         update.message.reply_text(text=name + xingamentos.xingar(name))
 

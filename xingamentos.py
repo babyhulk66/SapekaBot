@@ -20,17 +20,15 @@ def create_xing(xing_list):
         xingamentos.append(xingaux.pop())
     return xingamentos
 
-def xingar():
+def xingar(name):
     conjucao = random.choice(conjucoes)
-    if random.randint(0, 1) == 0:
-        name = random.choice(names_m)
-        xingamentos = create_xing(xingamentos_m)
+    if name[-1].lower() == 'a':
+        xingamento = create_xing(xingamentos_f)
 
     else:
-        name = random.choice(names_f)
-        xingamentos = create_xing(xingamentos_f)
+        xingamentos = create_xing(xingamentos_m)
 
-    return name.strip() + ' ' + conjucao.strip() + ' ' + ' '.join([x.strip() for x in xingamentos])
+    return ' ' + conjucao.strip() + ' ' + ' '.join([x.strip() for x in xingamentos])
 
 if __name__ == "__main__":
     while True:
